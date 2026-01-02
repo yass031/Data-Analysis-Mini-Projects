@@ -17,14 +17,3 @@ Collection de projets d'analyse de données réalisés sur DataCamp, démontrant
 - `schools.csv` - Données des résultats aux tests des écoles NYC
 - `schoolbus.jpg` - Image de présentation du projet
 
-**Code principal** :
-```python
-# Écoles avec les meilleurs résultats en maths
-best_math_schools = schools[schools["average_math"] >= 640][["school_name", "average_math"]]
-
-# Top 10 des écoles par score SAT total
-schools["total_SAT"] = schools["average_math"] + schools["average_reading"] + schools["average_writing"]
-top_10_schools = schools[["school_name", "total_SAT"]].sort_values("total_SAT", ascending=False).head(10)
-
-# Arrondissement avec la plus grande variabilité de scores
-boroughs = schools.groupby("borough")["total_SAT"].agg(["count", "mean", "std"]).round(2)
